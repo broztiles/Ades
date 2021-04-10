@@ -199,6 +199,7 @@ module.exports = {
               chatUpdate,
             })
             if (!isPrems) m.limit = m.limit || plugin.limit || false
+         this.chatRead(m.chat)
           } catch (e) {
             // Error occured
             m.error = e
