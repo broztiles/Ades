@@ -259,15 +259,17 @@ module.exports = {
   },
   async welcome({ m, participants }) {
     let chat = global.DATABASE._data.chats[m.key.remoteJid]
+   let metadata = await this.groupMetadata(m.key.remoteJid)
+   let mem = metadata.participants
     if (!chat.welcome) return
     for (let user of participants) {
-      let pp = './src/avatar_contact.png'
+      let pp = 'https://i.ibb.co/64dN6bQ/IMG-20201220-WA0024.jpg'
       try {
         pp = await this.getProfilePicture(user)
       } catch (e) {
       } finally {
         let text = (chat.sWelcome || this.welcome || conn.welcome || 'Welcome, @user!').replace('@user', '@' + user.split('@')[0]).replace('@subject', this.getName(m.key.remoteJid))
-        this.sendFile(m.key.remoteJid, pp, 'pp.jpg', text, m, false, {
+        this.sendFile(m.key.remoteJid, `https://recoders-area.caliph.repl.co/api/welcome?picurl=${pp}&mem=${mem.length}&gcname=${metadata.subject}&name=${this.getName(user)}&bgurl=https://images.unsplash.com/photo-1493514789931-586cb221d7a7?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb`, 'pp.jpg', text, m, false, {
           contextInfo: {
             mentionedJid: [user]
           }
