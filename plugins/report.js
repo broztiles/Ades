@@ -6,7 +6,6 @@ let handler = async(m, { conn, text }) => {
     const laporan = `*「 REPORT 」*\nNomor : wa.me/${m.sender.split`@`[0]}\nPesan : ${text}`
     for (let jid of global.owner.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').filter(v => v != conn.user.jid))
     m.reply(laporan, jid)
-    m.reply(laporan, m.sender) // Mwehehehehe
     conn.reply(m.chat, '✔️Masalah telah di laporkan ke Owner Bot, laporan palsu/main2 tidak akan ditanggapi!', m)
 }
 handler.help = ['bug', 'report'].map(v => v + ' <laporan>')
