@@ -52,6 +52,6 @@
     "url-regex": "^5.0.0",
     "yargs": "^16.2.0",
     "yt-search": "^2.7.4",
-    "image-to-base64": "latest"
+    "image-to-base64": "^2.1.1"
   }
 }
