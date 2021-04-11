@@ -1,7 +1,7 @@
-const os = require('os')
+const os = process
 
 
-global.owner = [os.environ.get["OWNER_NUMBER"]] // Put your number here
+global.owner = [os.env["OWNER_NUMBER"]] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user has unlimited limit
 global.APIs = { // API Prefix
@@ -11,8 +11,8 @@ global.APIs = { // API Prefix
   clph: 'https://recoders-area.caliph.repl.co'
 }
 global.APIKeys = { // APIKey Here
-  'https://recoders-area.caliph.repl.co': os.environ.get["API_CALIPH"],
-  'https://api.xteam.xyz': os.environ.get["API_KEY"]
+  'https://recoders-area.caliph.repl.co': os.env["API_CALIPH"],
+  'https://api.xteam.xyz': os.env["API_KEY"]
 }
 
 // Sticker WM
