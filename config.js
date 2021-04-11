@@ -11,7 +11,7 @@ global.APIs = { // API Prefix
   clph: 'https://recoders-area.caliph.repl.co'
 }
 global.APIKeys = { // APIKey Here
-  'https://recoders-area.caliph.repl.co': os.environ["API_CALIPH"]
+  'https://recoders-area.caliph.repl.co': os.environ["API_CALIPH"],
   'https://api.xteam.xyz': os.environ["API_KEY"]
 }
 global.caliph-api = os.environ["API_CALIPH"]
