@@ -1,16 +1,20 @@
-global.owner = ['6281215199447','0'] // Put your number here
+const os = require('os')
+
+
+global.owner = [os.environ["OWNER_NUMBER"]] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user has unlimited limit
 global.APIs = { // API Prefix
   // name: 'https://website'
   nrtm: 'https://nurutomo.herokuapp.com',
-  xteam: 'https://api.xteam.xyz'
+  xteam: 'https://api.xteam.xyz',
+  clph: 'https://recoders-area.caliph.repl.co'
 }
 global.APIKeys = { // APIKey Here
-  // 'https://website': 'apikey'
-  'https://api.xteam.xyz': '02e95f47c1f9c1b1'
+  'https://recoders-area.caliph.repl.co': os.environ["API_CALIPH"]
+  'https://api.xteam.xyz': os.environ["API_KEY"]
 }
-
+global.caliph-api = os.environ["API_CALIPH"]
 // Sticker WM
 global.packname = 'Sticker Maker'
 global.author = '@caliph71'
