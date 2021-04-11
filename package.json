@@ -10,7 +10,7 @@
     "plugins": "plugins"
   },
   "scripts": {
-    "start": "npm i image-to-base64 && node index.js",
+    "start": "node index.js",
     "test": "node test.js"
   },
   "keywords": [
