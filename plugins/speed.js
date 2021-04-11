@@ -1,8 +1,8 @@
 let { performance } = require('perf_hooks')
 let handler = async (m, { conn }) => {
-  let old = performance.now()
+  let old = new Date
   await m.reply('_Testing speed..._')
-  let neww = performance.now()
+  let neww = new Date
   m.reply(neww - old + 'ms')
 }
 handler.help = ['ping', 'speed']
