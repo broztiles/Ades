@@ -1,10 +1,7 @@
 let fetch = require('node-fetch')
-let handler = async (m, { conn, command, args }) => {
-  let full = /f$/i.test(command)
-  if (!args[0]) return conn.reply(m.chat, 'Tidak ada url', m)
-  let url = /https?:\/\//.test(args[0]) ? args[0] : 'https://' + args[0]
-  let ss = await (await fetch(global.API('nrtm', '/api/ssweb', { delay: 1000, url, full }))).buffer()
-  conn.sendFile(m.chat, ss, 'screenshot.png', url, m)
+let handler = async (m, { args, conn, command }) => {
+  ss = `https://api.apiflash.com/v1/urltoimage?access_key=b3aa607e199e44d0892770166249f872&url=${args[0]}&quality=100&full_page=${'ssf' == command}`
+  conn.sendFile(m.chat, ss, 'screenshot', 'screenshot web nya kak..', m)
 }
 handler.help = ['ss', 'ssf'].map(v => v + ' <url>')
 handler.tags = ['internet']
