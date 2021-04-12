@@ -1,10 +1,10 @@
 const { sticker } = require('../lib/sticker')
 const { MessageType } = require('@adiwajshing/baileys')
-
+const fetch = require('node-fetch')
 let handler = async (m, { conn, text }) => {
   if (!text) throw 'Tidak ada teks?'
-  let stiker = await sticker(null, `https://recoders-area.herokuapp.com/api/ttp?q=${text}`, global.packname, global.author)
-  conn.sendMessage(m.chat, stiker, MessageType.sticker, {
+  stiker = await fetch(`https://recoders-area.herokuapp.com/ttp?q=${text}`)
+  conn.sendMessage(m.chat, await stiker.buffer(), MessageType.sticker, {
     quoted: m
   })
 }
