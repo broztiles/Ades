@@ -2,7 +2,7 @@ let fetch = require('node-fetch')
      let handler  = async (m, { conn, args }) => {
     heum = await fetch(`https://recoders-area.caliph.repl.co/api/waifu?apikey=${APIKeys["https://recoders-area.caliph.repl.co"]}`)
     json = await heum.buffer()
-   conn.sendFile(m.chat, json, 'nulis', 'Lomlinya kak', m, false)
+   conn.sendFile(m.chat, json, 'nulis', 'Waifunya kak', m, false)
 }
 handler.help = ['waifu']
 handler.tags = ['nulis']
