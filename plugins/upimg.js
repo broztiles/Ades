@@ -11,7 +11,7 @@ const uploadFile = require('../lib/uploadFile')
       if (!img) throw 'Foto/Video tidak ditemukan'
       try {
       urlfile = await uploadImage(img)
-      m.reply(urlfile)
+       conn.sendFile(m.chat, img, 'upload', urlfile, m, false)
       } catch (e) {
       m.reply(`${e}`)
      }
@@ -27,7 +27,7 @@ handler.private = false
 
 handler.admin = false
 handler.botAdmin = false
-
+handler.limit = true
 handler.fail = null
 
 module.exports = handler
