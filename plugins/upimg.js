@@ -16,8 +16,8 @@ const uploadFile = require('../lib/uploadFile')
       m.reply(`${e}`)
      }
 }
-handler.help = ['upimg']
-handler.tags = ['quotes']
+handler.help = ['upimg <reply / caption>']
+handler.tags = ['nulis']
 handler.command = /^(upimg)$/i
 handler.owner = false
 handler.mods = false
