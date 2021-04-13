@@ -2,7 +2,7 @@ let fetch = require('node-fetch')
 
 
 let handler  = async (m, { conn }) => {
-  ddd = await fetch('https://recoders-area.herokuapp.com/api/fakta?apikey=FreeApi')
+  ddd = await fetch('https://https://recoders-area.caliph.repl.co/api/fakta?apikey='+APIKeys["https://recoders-area.caliph.repl.co"])
   f = await ddd.json()
   conn.reply(m.chat,`“${f.result}”`, m)
 }
