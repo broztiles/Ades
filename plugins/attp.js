@@ -5,9 +5,7 @@ const { sticker } = require('../lib/sticker')
 
 let handler  = async (m, { conn, text }) => {
    pp = `https://api.vhtear.com/textxgif?text=${text}&apikey=Anakanjing123`
-    datae = await JSON.stringify(pp.toBuffer().toString('base64')).replace(/\"/gi, ''))
-   res = await Buffer.from(datae, 'base64')
-                     await sticker(res, false, 'Text Gif', 'Caliph Bot').then(gege => {
+                     await sticker(false, pp, 'Text Gif', 'Caliph Bot').then(gege => {
                      conn.sendMessage(m.chat, gege, 'stickerMessage', { quoted: m })
                      })
   if (!text) throw 'Uhm...Teksnya?'
