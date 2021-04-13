@@ -2,13 +2,13 @@ let fetch = require('node-fetch')
 
 
 let handler  = async (m, { conn }) => {
-  ddd = await fetch('https://https://recoders-area.caliph.repl.co/api/randomquote?apikey='+APIKeys["https://recoders-area.caliph.repl.co"])
+  ddd = await fetch('https://recoders-area.caliph.repl.co/api/randomquote?apikey='+APIKeys["https://recoders-area.caliph.repl.co"])
   f = await ddd.json()
-  conn.reply(m.chat,`“${JSON.stringify(f.quote)}”`, m)
+  conn.reply(m.chat,`${JSON.stringify(f.quote)}`, m)
 }
-handler.help = ['fakta']
+handler.help = ['quotes']
 handler.tags = ['quotes']
-handler.command = /^(fakta)$/i
+handler.command = /^(quotes)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
