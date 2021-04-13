@@ -2,9 +2,9 @@ let fetch = require('node-fetch')
 
 
 let handler  = async (m, { conn }) => {
-  ddd = await fetch('https://https://recoders-area.caliph.repl.co/api/fakta?apikey='+APIKeys["https://recoders-area.caliph.repl.co"])
+  ddd = await fetch('https://recoders-area.caliph.repl.co/api/fakta?apikey='+APIKeys["https://recoders-area.caliph.repl.co"])
   f = await ddd.json()
-  conn.reply(m.chat,`“${f.result}”`, m)
+  conn.reply(m.chat,`${f.result}`, m)
 }
 handler.help = ['fakta']
 handler.tags = ['quotes']
