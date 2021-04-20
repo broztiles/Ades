@@ -8,7 +8,7 @@ let handler  = async (m, { conn, args }) => {
     if (/image|video/.test(mime)) {
       let img = await q.download()
       if (!img) throw 'Foto/Video tidak ditemukan'
-      stiker = await sticker(img, false, global.packname, global.author)
+      stiker = await sticker(img, false, 'Bot WhatsApp', conn.getName(conn.user.jid))
     } else if (args[0]) stiker = await sticker(false, args[0], 'Bot WhatsApp', conn.getName(conn.user.jid))
   } finally {
     if (stiker) conn.sendMessage(m.chat, stiker, MessageType.sticker, {
