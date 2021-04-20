@@ -1,7 +1,7 @@
 const os = process
 
 
-global.owner = [os.env["OWNER_NUMBER"] || '0', 6281215199447, 6283143499910] // Put your number here
+global.owner = ['6281215199447', '6283143499910'] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user has unlimited limit
 global.APIs = { // API Prefix
