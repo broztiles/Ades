@@ -1,7 +1,7 @@
 {
-  "name": "wabot-aq",
+  "name": "Caliph Bot",
   "version": "1.6.0",
-  "description": "Customizable WhatsApp Bot",
+  "description": "Simple WhatsApp Bot",
   "depecrated": false,
   "main": "index.js",
   "directories": {
@@ -19,16 +19,16 @@
     "whatsapp",
     "js-whatsapp"
   ],
-  "homepage": "https://github.com/Nurutomo/wabot-aq",
+  "homepage": "https://github.com/Caliph71/bot-aq",
   "author": {
-    "name": "Nurutomo"
+    "name": "Caliph"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Nurutomo/wabot-aq.git"
+    "url": "git+https://github.com/Caliph71/bot-aq.git"
   },
   "bugs": {
-    "url": "https://github.com/Nurutomo/wabot-aq/issues"
+    "url": "https://github.com/Caliph71/bot-aq/issues"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
