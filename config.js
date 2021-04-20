@@ -12,7 +12,7 @@ global.APIs = { // API Prefix
 }
 global.APIKeys = { // APIKey Here
   'https://recoders-area.caliph.repl.co': os.env["API_CALIPH"] || 'FreeApi',
-  'https://api.xteam.xyz': os.env["API_KEY"] || 'your-apikey'
+  'https://api.xteam.xyz': os.env["API_KEY"] || 'MIMINETBOT'
 }
 
 // Sticker WM
