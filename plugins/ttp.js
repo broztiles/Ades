@@ -3,7 +3,7 @@ const { MessageType } = require('@adiwajshing/baileys')
 const fetch = require('node-fetch')
 let handler = async (m, { conn, text }) => {
   if (!text) throw 'Tidak ada teks?'
-  stiker = `https://recoders-area.herokuapp.com/ttp?q=${text}`
+  stiker = `https://recoders-area.caliph.repl.co/api/ttp?q=${text}`
   conn.sendMessage(m.chat, await sticker2(false, stiker), MessageType.sticker, {
     quoted: m
   })
