@@ -3,9 +3,9 @@ const { MessageType } = require('@adiwajshing/baileys')
 const fetch = require('node-fetch')
 let handler = async (m, { conn, text }) => {
   if (!text) throw 'Tidak ada teks?'
-   f = await fetch(`https://recoders-area.caliph.repl.co/api/ttp?q=${text}`).then(v => v.json())
+   f = await fetch(`https://recoders-area.caliph.repl.co/api/ttp?q=${text}`).then(v => v.Buffer())
   stiker = f.url
-  conn.sendMessage(m.chat, await sticker2(false, stiker), MessageType.sticker, {
+  conn.sendMessage(m.chat, f, MessageType.sticker, {
     quoted: m
   })
 }
