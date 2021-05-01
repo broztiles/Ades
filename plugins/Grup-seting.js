@@ -28,7 +28,7 @@ let handler  = async (m, { conn, args, usedPrefix, command }) => {
 }
 handler.help = ['group *open / close / revoke*']
 handler.tags = ['group']
-handler.command = /^(group||grup)$/i
+handler.command = /^(group|grup)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
