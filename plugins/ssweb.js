@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
 let handler = async (m, { args, conn, command }) => {
-  ss = `https://api.apiflash.com/v1/urltoimage?access_key=b3aa607e199e44d0892770166249f872&url=${args[0]}&quality=100&full_page=${'ssf' == command}`
+  ss = `https://caliph-api.herokuapp.com/api/ssweb?url=${args[0]}&fullpage=${'ssf' == command}&delay=1000&quality=1000`
   conn.sendFile(m.chat, ss, 'screenshot', 'screenshot web nya kak..', m)
 }
 handler.help = ['ss', 'ssf'].map(v => v + ' <url>')
