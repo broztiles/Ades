@@ -4,7 +4,7 @@ const { MessageType } = require('@adiwajshing/baileys')
 const { sticker } = require('../lib/sticker')
 
 let handler  = async (m, { conn, text }) => {
-   pp = `https://api.vhtear.com/textxgif?text=${text}&apikey=Anakanjing123`
+   pp = `https://api.vhtear.com/textxgif?text=${text}&apikey=ameysbot`
                      await sticker(false, pp, 'Text Gif', 'Caliph Bot').then(gege => {
                      conn.sendMessage(m.chat, gege, 'stickerMessage', { quoted: m })
                      })
