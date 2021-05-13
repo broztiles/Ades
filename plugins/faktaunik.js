@@ -8,7 +8,7 @@ let handler  = async (m, { conn }) => {
 } 
 handler.help = ['fakta']
 handler.tags = ['quotes']
-handler.command = /^(fakta)$/i
+handler.command = /^(fakta|faktaunik)$/i
 handler.owner = false
 handler.mods = false
 handler.premium = false
