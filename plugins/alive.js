@@ -8,6 +8,7 @@ function clockString(ms) {
 
 let handler  = async (m, { conn }) => {
   pplink = await conn.getProfilePicture(conn.user.jid)
+  ppstatus = await conn.getStatus(conn.user.jid).status
   totaluser = Object.keys(DATABASE.data.users)
   ppbuffer = await fetch(pplink).then(v => v.buffer())
   conn.sendMessage(m.chat, ppbuffer, 'imageMessage', { caption:`
@@ -15,7 +16,8 @@ let handler  = async (m, { conn }) => {
  *Total Groups* : ${conn.chats.array.filter(v => v.jid.endsWith('g.us')).map(v => v.jid).length}
  *Total personal* : ${conn.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net')).map(v => v.jid).length}
  *Total User* : ${totaluser.length}
- *Uptime* : ${clockString(process.uptime() * 1000)}`, quoted: m, sendEphemeral: true})
+ *Uptime* : ${clockString(process.uptime() * 1000)}
+ *Bio* : ${ppstatus}`, quoted: m, sendEphemeral: true})
 }
 handler.help = ['info', 'alive']
 handler.tags = ['main']
