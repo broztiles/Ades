@@ -1,5 +1,10 @@
 let fetch = require('node-fetch')
-
+function clockString(ms) {
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000)
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return [h, m, s].map(v => v.toString().padStart(2, 0) ).join(':')
+}
 
 let handler  = async (m, { conn }) => {
   pplink = await conn.getProfilePicture(conn.user.jid)
@@ -9,7 +14,8 @@ let handler  = async (m, { conn }) => {
  *Name Bot* : ${conn.user.name}
  *Total Groups* : ${conn.chats.array.filter(v => v.jid.endsWith('g.us')).map(v => v.jid).length}
  *Total personal* : ${conn.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net')).map(v => v.jid).length}
- *Total User* : ${totaluser.length}`, quoted: m, sendEphemeral: true})
+ *Total User* : ${totaluser.length}
+ *Uptime* : ${clockString(process.uptime() * 1000)}`, quoted: m, sendEphemeral: true})
 }
 handler.help = ['info', 'alive']
 handler.tags = ['main']
