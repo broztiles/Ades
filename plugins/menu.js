@@ -1,9 +1,46 @@
 let fs = require ('fs')
 let path = require('path')
 let levelling = require('../lib/levelling')
+const moment = require('moment-timezone')
 let handler  = async (m, { conn, usedPrefix: _p }) => {
   try {
-    let package = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')))
+const jam = moment.tz('Asia/Jakarta').format('HH')
+ var ucapanWaktu = 'Selamat Pagi 🌄'
+
+				if (jam >= '03' && jam <= '10') {
+				ucapanWaktu = 'Selamat Pagi 🌄'
+				} else if (jam >= '10' && jam <= '13') {
+				ucapanWaktu = 'Selamat Siang ☀️'
+				} else if (jam >= '13' && jam <= '18') {
+				ucapanWaktu = 'Selamat Sore 🌅'
+				} else if (jam >= '18' && jam <= '23') {
+				ucapanWaktu = 'Selamat Malam 🌙'
+				} else {
+				ucapanWaktu = 'Selamat Malam 🌙'
+				}
+const freply = {key:{ fromMe:false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: {
+
+					"productMessage": {
+						"product": {
+							"productImage": {
+								"url": "https://mmg.whatsapp.net/d/f/Am1sSqpVypFpsQawFUFkm4HgkPRqEx8rt32niyBmL4Wa.enc",
+								"mimetype": "image/jpeg",
+								"fileSha256": "KbJC20DoVEdDw+8WF1EqwtPsdPUTF8/xQbhg+65P3q4=",
+								"fileLength": "43344",
+								"height": 1080,
+								"width": 1080,
+								"mediaKey": "cX+6c20dws6B++0slmMNXcCk7omK+zvheoN6087j9nl=",
+								"fileEncSha256": "BGO1C/OttoScb1UxDrGlwsI9eImocg1zwbLgYKmecXs=",
+								"directPath": "/v/t62.7118-24/20036572_1210576852672540_4032358369544328852_n.enc?oh=d0e477e1bf0a01bfcf328776ab50ccee&oe=6043238E",
+								"mediaKeyTimestamp": "1612168223"
+		},
+							"productId": "3872465552870232",
+							"title": `${ucapanWaktu} ${conn.getName(m.sender)}`,
+							"currencyCode": "USD",
+							"priceAmount1000": "99",
+							"productImageCount": 1
+						},
+						"businessOwnerJid": "6281215199447@s.whatsapp.net"}}}    let package = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')))
     let { exp, limit, level } = global.DATABASE.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let name = conn.getName(m.sender)
@@ -124,7 +161,7 @@ let handler  = async (m, { conn, usedPrefix: _p }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).join`|`})`, 'g'), (_, name) => ''+replace[name])
-    conn.sendMessage(m.chat, text.trim(), 'conversation', { quoted: m, contextInfo : { mentionedJid: conn.parseMention(text) }})
+    conn.sendMessage(m.chat, text.trim(), 'conversation', { sendEphemeral: true, quoted: freply, contextInfo : { mentionedJid: conn.parseMention(text) }})
   } catch (e) {
     conn.reply(m.chat, 'Maaf, menu sedang error', m)
     throw e
