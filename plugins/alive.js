@@ -8,7 +8,7 @@ let handler  = async (m, { conn }) => {
   conn.sendMessage(m.chat, ppbuffer, 'imageMessage', { caption:`
  *Name Bot* : ${conn.user.name}
  *Total Groups* : ${conn.chats.array.filter(v => v.jid.endsWith('g.us')).map(v => v.jid).length}
- *Total personal* : ${caliph.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net')).map(v => v.jid).length}
+ *Total personal* : ${conn.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net')).map(v => v.jid).length}
  *Total User* : ${totaluser.length}`, quoted: m, sendEphemeral: true})
 }
 handler.help = ['info', 'alive']
