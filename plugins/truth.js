@@ -6,7 +6,7 @@ let handler  = async (m, { conn }) => {
   f = await ddd.json()
   conn.reply(m.chat,`${f.result}`, m)
 } 
-handler.help = ['fakta']
+handler.help = ['truth']
 handler.tags = ['quotes']
 handler.command = /^(truth)$/i
 handler.owner = false
