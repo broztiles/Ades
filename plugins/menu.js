@@ -40,7 +40,8 @@ const freply = {key:{ fromMe:false, participant: `0@s.whatsapp.net`, ...(m.chat 
 							"priceAmount1000": "99",
 							"productImageCount": 1
 						},
-						"businessOwnerJid": "6281215199447@s.whatsapp.net"}}}    let package = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')))
+						"businessOwnerJid": "6281215199447@s.whatsapp.net"}}}    
+let package = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')))
     let { exp, limit, level } = global.DATABASE.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
     let name = conn.getName(m.sender)
