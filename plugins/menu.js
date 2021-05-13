@@ -5,18 +5,18 @@ const moment = require('moment-timezone')
 let handler  = async (m, { conn, usedPrefix: _p }) => {
   try {
 const jam = moment.tz('Asia/Jakarta').format('HH')
- var ucapanWaktu = 'Selamat Pagi 🌄'
+ var ucapanWaktu = 'Selamat Pagi🌄'
 
 				if (jam >= '03' && jam <= '10') {
-				ucapanWaktu = 'Selamat Pagi 🌄'
+				ucapanWaktu = 'Selamat Pagi🌄'
 				} else if (jam >= '10' && jam <= '13') {
-				ucapanWaktu = 'Selamat Siang ☀️'
+				ucapanWaktu = 'Selamat Siang☀️'
 				} else if (jam >= '13' && jam <= '18') {
-				ucapanWaktu = 'Selamat Sore 🌅'
+				ucapanWaktu = 'Selamat Sore🌅'
 				} else if (jam >= '18' && jam <= '23') {
-				ucapanWaktu = 'Selamat Malam 🌙'
+				ucapanWaktu = 'Selamat Malam🌙'
 				} else {
-				ucapanWaktu = 'Selamat Malam 🌙'
+				ucapanWaktu = 'Selamat Malam🌙'
 				}
 const freply = {key:{ fromMe:false, participant: `0@s.whatsapp.net`, ...(m.chat ? { remoteJid: `status@broadcast` } : {}) }, message: {
 
@@ -117,7 +117,7 @@ let package = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')
     conn.menu = conn.menu ? conn.menu : {}
     let before = conn.menu.before || `
 ╭─「 ${conn.user.name} 」
-│ Hai, %name!
+│ ${ucapanWaktu} ${conn.getName(m.sender)}
 │
 │ Tersisa *%limit Limit*
 │ Level *%level (%exp / %maxexp)* [%xp4levelup lagi untuk levelup]
