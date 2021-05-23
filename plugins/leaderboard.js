@@ -2,9 +2,9 @@ let handler = async (m, { conn, args, participants }) => {
   let users = Object.entries(global.DATABASE.data.users).map(([key, value]) => {
     return {...value, jid: key}
   })
-  let sortedExp = users.map(toNumber('exp')).sort(sort('exp', true))
-  let sortedLim = users.map(toNumber('limit')).sort(sort('limit', true))
-  let sortedLevel = users.map(toNumber('level')).sort(sort('level', true))
+  let sortedExp = users.map(toNumber('exp')).sort(sort('exp'))
+  let sortedLim = users.map(toNumber('limit')).sort(sort('limit'))
+  let sortedLevel = users.map(toNumber('level')).sort(sort('level'))
   let usersExp = sortedExp.map(enumGetKey)
   let usersLim = sortedLim.map(enumGetKey)
   let usersLevel = sortedLevel.map(enumGetKey)
@@ -19,12 +19,12 @@ ${sortedExp.slice(0, len).map(({ jid, exp }, i) => `${i + 1}. ${participants.som
 • *Limit Leaderboard Top ${len}* •
 Kamu: *${usersLim.indexOf(m.sender) + 1}* dari *${usersLim.length}*
 
-${sortedExp.slice(0, len).map(({ jid, limit }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *${limit} Exp*`).join`\n`}
+${sortedLim.slice(0, len).map(({ jid, limit }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *${limit} Exp*`).join`\n`}
 
 • *Level Leaderboard Top ${len}* •
 Kamu: *${usersLevel.indexOf(m.sender) + 1}* dari *${usersLevel.length}*
 
-${sortedExp.slice(0, len).map(({ jid, level }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *Level ${level}*`).join`\n`}
+${sortedLevel.slice(0, len).map(({ jid, level }, i) => `${i + 1}. ${participants.some(p => jid === p.jid) ? `(${conn.getName(jid)}) wa.me/` : '@'}${jid.split`@`[0]} *Level ${level}*`).join`\n`}
 `.trim()
   conn.reply(m.chat, text, m, {
     contextInfo: {
@@ -49,9 +49,9 @@ handler.exp = 0
 
 module.exports = handler
 
-function sort(property, ascending = false) {
-  if (property) return (...args) => args[!ascending & 1][property] - args[ascending & 1][property]
-  else return (...args) => args[!ascending & 1] - args[ascending & 1]
+function sort(property, ascending = true) {
+  if (property) return (...args) => args[ascending & 1][property] - args[!ascending & 1][property]
+  else return (...args) => args[ascending & 1] - args[!ascending & 1]
 }
 
 function toNumber(property, _default = 0) {

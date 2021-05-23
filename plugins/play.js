@@ -1,6 +1,7 @@
 let limit = 30
 let yts = require('yt-search')
 let fetch = require('node-fetch')
+const canvas = require('canvacord')
 const { servers, yta, ytv } = require('../lib/y2mate')
 let handler = async (m, { conn, command, text, isPrems, isOwner }) => {
   if (!text) throw 'Cari apa?'
@@ -10,12 +11,23 @@ let handler = async (m, { conn, command, text, isPrems, isOwner }) => {
   let isVideo = /2$/.test(command)
   let { dl_link, thumb, title, filesize, filesizeF} = await (isVideo ? ytv : yta)(vid.url, 'id4')
   let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
-  conn.sendFile(m.chat, thumb, 'thumbnail.jpg', `
+const cardJoox = new canvas.Spotify()
+                    .setAuthor('<unknown')
+                    .setAlbum('<unknown>')
+                    .setStartTimestamp(vid.timestamp)
+                    .setEndTimestamp(12)
+                    .setImage(thumb)
+                    .setTitle(title)
+                cardJoox.build()
+                    .then(async (buffer) => {
+                        conn.sendFile(m.chat, buffer, 'thumbnail.jpg', `
 *Title:* ${title}
 *Filesize:* ${filesizeF}
 *Source:* ${vid.url}
 *${isLimit ? 'Pakai ': ''}Link:* ${dl_link}
 `.trim(), m)
+                    })
+
   let _thumb = {}
   try { if (isVideo) _thumb = { thumbnail: await (await fetch(thumb)).buffer() } }
   catch (e) { }
@@ -33,4 +45,3 @@ handler.exp = 0
 handler.limit = true
 
 module.exports = handler
-

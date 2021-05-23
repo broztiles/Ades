@@ -1,25 +1,20 @@
-const { spawn } = require('child_process')
+const { spawn, exec } = require('child_process')
+let fs = require('fs')
 const util = require('util')
 const { MessageType } = require('@adiwajshing/baileys')
 
 let handler  = async (m, { conn }) => {
   if (!m.quoted) return conn.reply(m.chat, 'Tag stikernya!', m)
-  let q = { message: { [m.quoted.mtype]: m.quoted }}
-  if (/sticker/.test(m.quoted.mtype)) {
-    let sticker = await conn.downloadM(q)
-    if (!sticker) throw sticker
-    let bufs = []
-    let im = spawn('convert', ['webp:-', 'png:-'])
-    im.on('error',e =>  conn.reply(m.chat, util.format(e), m))
-    im.stdout.on('data', chunk => bufs.push(chunk))
-    im.stdin.write(sticker)
-    im.stdin.end()
-    im.on('exit', () => {
-      conn.sendMessage(m.chat, Buffer.concat(bufs), MessageType.image, {
-        quoted: m
-      })
-    })
-  }
+  encmedia = JSON.parse(JSON.stringify(m).replace('quotedM','m')).message.extendedTextMessage.contextInfo
+					media = await conn.downloadAndSaveMediaMessage(encmedia)
+					ran = Math.floor(Math.random() * 900)+'toimg.png'
+					exec(`ffmpeg -i ${media} ${ran}`, (err) => {
+						//fs.unlinkSync(media)
+						if (err) return m.reply('Gagal, pada saat mengkonversi sticker ke gambar')
+						buffer = fs.readFileSync(ran)
+						conn.sendMessage(m.chat, buffer, MessageType.image, {quoted: m, caption: '>//<'})
+				//fs.unlinkSync(ran)
+					})
 }
 handler.help = ['toimg (reply)']
 handler.tags = ['sticker']
