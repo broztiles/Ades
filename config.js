@@ -1,23 +1,19 @@
-const os = process
-
-
-global.owner = ['6281215199447', '6283143499910'] // Put your number here
+global.owner = ['6281215199447'] // Put your number here
 global.mods = [] // Want some help?
 global.prems = [] // Premium user has unlimited limit
 global.APIs = { // API Prefix
   // name: 'https://website'
   nrtm: 'https://nurutomo.herokuapp.com',
-  xteam: 'https://api.xteam.xyz',
-  clph: 'https://recoders-area.caliph.repl.co'
+  xteam: 'https://api.xteam.xyz'
 }
 global.APIKeys = { // APIKey Here
-  'https://recoders-area.caliph.repl.co': os.env["API_CALIPH"] || 'FreeApi',
-  'https://api.xteam.xyz': os.env["API_KEY"] || 'MIMINETBOT'
+  // 'https://website': 'apikey'
+  'https://api.xteam.xyz': 'ameysbot'
 }
 
 // Sticker WM
-global.packname = ''
-global.author = ''
+global.packname = 'FBI BOT'
+global.author = 'IG : @caliph_71'
 
 global.multiplier = 69 // The higher, The harder levelup
 

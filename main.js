@@ -8,7 +8,6 @@ let { promisify } = require('util')
 let yargs = require('yargs/yargs')
 let Readline = require('readline')
 let cp = require('child_process')
-let qrcode = require('qrcode')
 let path = require('path')
 let fs = require('fs')
 
@@ -31,24 +30,17 @@ if (!global.DATABASE.data.users) global.DATABASE.data = {
   users: {},
   chats: {},
   stats: {},
+  msgs: {},
 }
 if (!global.DATABASE.data.chats) global.DATABASE.data.chats = {}
 if (!global.DATABASE.data.stats) global.DATABASE.data.stats = {}
-if (opts['server']) {
-  let express = require('express')
-  global.app = express()
-  app.all('*', async (req, res) => {
-    res.end(await qrcode.toBuffer(global.qr))
-  })
-  app.listen(PORT, () => console.log('App listened on port', PORT))
-}
+if (!global.DATABASE.data.stats) global.DATABASE.data.msgs = {}
 global.conn = new WAConnection()
 let authFile = `${opts._[0] || 'session'}.data.json`
 if (fs.existsSync(authFile)) conn.loadAuthInfo(authFile)
 if (opts['trace']) conn.logger.level = 'trace'
 if (opts['debug']) conn.logger.level = 'debug'
 if (opts['big-qr'] || opts['server']) conn.on('qr', qr => generate(qr, { small: false }))
-if (opts['server']) conn.on('qr', qr => { global.qr = qr })
 let lastJSON = JSON.stringify(global.DATABASE.data)
 if (!opts['test']) setInterval(() => {
   conn.logger.info('Saving database . . .')
@@ -59,6 +51,7 @@ if (!opts['test']) setInterval(() => {
     lastJSON = JSON.stringify(global.DATABASE.data)
   }
 }, 60 * 1000) // Save every minute
+if (opts['server']) require('./server')(global.conn, PORT)
 
 
 
@@ -121,19 +114,18 @@ global.reloadHandler = function () {
   if (!isInit) {
     conn.off('chat-update', conn.handler)
     conn.off('message-delete', conn.onDelete)
-    conn.off('group-add', conn.onAdd)
-    conn.off('group-leave', conn.onLeave)
+    conn.off('group-participants-update', conn.onParticipantsUpdate)
   }
   conn.welcome = 'Hai, @user!\nSelamat datang di grup @subject'
   conn.bye = 'Selamat tinggal @user!'
+  conn.spromote = '@user sekarang admin!'
+  conn.sdemote = '@user sekarang bukan admin!'
   conn.handler = handler.handler
-  conn.onAdd = handler.welcome
-  conn.onLeave = handler.leave
   conn.onDelete = handler.delete
+  conn.onParticipantsUpdate = handler.participantsUpdate
   conn.on('chat-update', conn.handler)
   conn.on('message-delete', conn.onDelete)
-  conn.on('group-add', conn.onAdd)
-  conn.on('group-leave', conn.onLeave)
+  conn.on('group-participants-update', conn.onParticipantsUpdate)
   if (isInit) {
     conn.on('error', conn.logger.error)
     conn.on('close', () => {
@@ -185,6 +177,8 @@ global.reload = (_event, filename) => {
       global.plugins[filename] = require(dir)
     } catch (e) {
       conn.logger.error(e)
+    } finally {
+      global.plugins = Object.fromEntries(Object.entries(global.plugins).sort(([a], [b]) => a.localeCompare(b)))
     }
   }
 }
