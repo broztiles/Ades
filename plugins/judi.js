@@ -10,22 +10,22 @@ let handler = async (m, { conn, args, usedPrefix, DevMode }) => {
         let Aku = (randomaku * 1)
         let Kamu = (randomkamu * 1)
         let count = args[0]
-        count = count ? /all/i.test(count) ? Math.floor(global.DATABASE._data.users[m.sender].money / buatall) : parseInt(count) : args[0] ? parseInt(args[0]) : 1
+        count = count ? /all/i.test(count) ? Math.floor(global.DATABASE._data.users[m.sender].exp / buatall) : parseInt(count) : args[0] ? parseInt(args[0]) : 1
         count = Math.max(1, count)
         if (args.length < 1) return conn.reply(m.chat, usedPrefix + 'judi <jumlah>\n ' + usedPrefix + 'judi 1000', m)
-        if (global.DATABASE._data.users[m.sender].money >= count * 1) {
-            global.DATABASE._data.users[m.sender].money -= count * 1
+        if (global.DATABASE._data.users[m.sender].exp >= count * 1) {
+            global.DATABASE._data.users[m.sender].exp -= count * 1
             await m.reply('*Jangan judi gk bakal menang!!, kalau gk percaya gpp*') //Kwkwwkkwlwlw
             if (Aku > Kamu) {
-                conn.reply(m.chat, `aku roll:${Aku}\nKamu roll: ${Kamu}\n\nkamu *Kalah*, kamu kehilangan ${count} Money`.trim(), m)
+                conn.reply(m.chat, `aku roll:${Aku}\nKamu roll: ${Kamu}\n\nkamu *Kalah*, kamu kehilangan ${count} Exp`.trim(), m)
             } else if (Aku < Kamu) {
                 global.DATABASE._data.users[m.sender].money += count * 2
-                conn.reply(m.chat, `aku roll:${Aku}\nKamu roll: ${Kamu}\n\nkamu *Menang*, kamu Mendapatkan ${count * 2} Money`.trim(), m)
+                conn.reply(m.chat, `aku roll:${Aku}\nKamu roll: ${Kamu}\n\nkamu *Menang*, kamu Mendapatkan ${count * 2} Exp`.trim(), m)
             } else {
                 global.DATABASE._data.users[m.sender].money += count * 1
-                conn.reply(m.chat, `aku roll:${Aku}\nKamu roll: ${Kamu}\n\nkamu *Seri*, kamu Mendapatkan ${count * 1} Money`.trim(), m)
+                conn.reply(m.chat, `aku roll:${Aku}\nKamu roll: ${Kamu}\n\nkamu *Seri*, kamu Mendapatkan ${count * 1} Exp`.trim(), m)
             }
-        } else conn.reply(m.chat, `uang kamu tidak cukup untuk melakukan judi sebesar ${count} Money`.trim(), m)
+        } else conn.reply(m.chat, `uang kamu tidak cukup untuk melakukan judi sebesar ${count} Exp`.trim(), m)
     } catch (e) {
         console.log(e)
         m.reply('Error!!')
