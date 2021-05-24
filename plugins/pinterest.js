@@ -2,10 +2,10 @@ let fetch = require('node-fetch')
      let handler  = async (m, { conn, args, text }) => {
      if (!text) throw 'Cari Apa ?'
  if (text) m.reply('Searching.....')
-    heum = await fetch(`https://fdciabdul.tech/api/pinterest/?keyword=${encodeURI(text)}`)
+    heum = await fetch(`https://api.vhtear.com/pinterest?apikey=ameysbot&query=${encodeURI(text)}`)
     json = await heum.json()
-    random = json[Math.floor(Math.random() * json.length)]
-   conn.sendFile(m.chat, random, 'pinterest', '', m, false)
+    random = json.result[Math.floor(Math.random() * json.result.length)]
+   conn.sendFile(m.chat, random, 'pinterest.png', '', m, false)
 }
 handler.help = ['pinterest <query>']
 handler.tags = ['tools']
