@@ -10,7 +10,7 @@ let handler = async (m, { conn, command, args }) => {
     return `*${title}*\n_${link}_\n_${snippet}_`
   }).join`\n\n`
   try {
-    let ss = (await fetch(`https://caliph-api.herokuapp.com/api/ssweb?delay=1000&full=${full}&url=${url}`)).buffer()
+    let ss = `https://caliph-api.herokuapp.com/api/ssweb?delay=1000&full=${full}&url=${url}`
     if (ss.includes('html')) throw ''
     await conn.sendFile(m.chat, ss, 'screenshot.png', url + '\n\n' + msg, m)
   } catch (e) {
