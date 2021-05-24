@@ -19,10 +19,10 @@ let handler = async (m, { conn, args, usedPrefix, DevMode }) => {
             if (Aku > Kamu) {
                 conn.reply(m.chat, `aku roll:${Aku}\nKamu roll: ${Kamu}\n\nkamu *Kalah*, kamu kehilangan ${count} Exp`.trim(), m)
             } else if (Aku < Kamu) {
-                global.DATABASE._data.users[m.sender].money += count * 2
+                global.DATABASE._data.users[m.sender].exp += count * 2
                 conn.reply(m.chat, `aku roll:${Aku}\nKamu roll: ${Kamu}\n\nkamu *Menang*, kamu Mendapatkan ${count * 2} Exp`.trim(), m)
             } else {
-                global.DATABASE._data.users[m.sender].money += count * 1
+                global.DATABASE._data.users[m.sender].exp += count * 1
                 conn.reply(m.chat, `aku roll:${Aku}\nKamu roll: ${Kamu}\n\nkamu *Seri*, kamu Mendapatkan ${count * 1} Exp`.trim(), m)
             }
         } else conn.reply(m.chat, `uang kamu tidak cukup untuk melakukan judi sebesar ${count} Exp`.trim(), m)
