@@ -5,7 +5,8 @@ let fetch = require('node-fetch')
     heum = await fetch(`https://api.vhtear.com/pinterest?apikey=ameysbot&query=${encodeURI(text)}`)
     json = await heum.json()
     random = json.result[Math.floor(Math.random() * json.result.length)]
-   conn.sendFile(m.chat, random, 'pinterest.png', '', m, false)
+   get = await conn.getFile(random)
+   conn.sendMessage(m.chat, get.data, 'imageMessage', { quoted: m, mimetype: get.mime })
 }
 handler.help = ['pinterest <query>']
 handler.tags = ['tools']
