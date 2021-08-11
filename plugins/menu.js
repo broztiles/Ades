@@ -40,7 +40,7 @@ const freply = {key:{ fromMe:false, participant: `0@s.whatsapp.net`, ...(m.chat 
 							"priceAmount1000": "99",
 							"productImageCount": 1
 						},
-						"businessOwnerJid": "6281215199447@s.whatsapp.net"}}}    
+						"businessOwnerJid": "60199782326@s.whatsapp.net"}}}    
 let package = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')))
     let { exp, limit, level } = global.DATABASE.data.users[m.sender]
     let { min, xp, max } = levelling.xpRange(level, global.multiplier)
@@ -116,21 +116,15 @@ let package = JSON.parse(fs.readFileSync(path.join(__dirname, '../package.json')
     }
     conn.menu = conn.menu ? conn.menu : {}
     let before = conn.menu.before || `
-╭─「 ${conn.user.name} 」
-│ ${ucapanWaktu} ${conn.getName(m.sender)}
-│
-│ Tersisa *%limit Limit*
-│ Level *%level (%exp / %maxexp)* [%xp4levelup lagi untuk levelup]
-│ %totalexp XP in Total
-│ 
-│ Tanggal: *%week %weton, %date*
-│ Waktu: *%time*
-│
-│ Uptime: *%uptime (%muptime)*
-│ Database: %rtotalreg of %totalreg
-│ Github:
-│ %github
-╰────
+${ucapanWaktu} %name
+
+Bot Name : ${conn.user.name}
+Your Name : %name
+Prefix : %p
+Your Limit : %limit
+Your XP : %exp
+Owner : Adii
+
 %readmore`
     let header = conn.menu.header || '╭─「 %category 」'
     let body   = conn.menu.body   || '│ • %cmd%islimit'
