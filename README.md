@@ -1,4 +1,4 @@
-# wabot-aq
+# bot-aq
 
 Simple WhatsApp Bot
 
@@ -10,8 +10,8 @@ Simple WhatsApp Bot
 > pkg install nodejs -y
 > pkg install ffmpeg -y
 > pkg install imagemagick -y
-> git clone https://github.com/Nurutomo/wabot-aq
-> cd wabot-aq
+> git clone https://github.com/Adiixyz/bot-aq
+> cd bot-aq
 > npm install
 ```
 
@@ -25,7 +25,7 @@ Simple WhatsApp Bot
 * Download And Install ImageMagick [`Click Here`](https://imagemagick.org/script/download.php) (if nulis want work,  checklist columns 1,2,3,5,6)
 
 ```bash
-> git clone https://github.com/Nurutomo/wabot-aq
+> git clone https://github.com/Adiixyz/bot-aq
 > cd wabot-aq
 > npm install
 ```
@@ -94,3 +94,5 @@ conn.logger.level = 'debug'
 #### Powered By : [`XTEAM`](https://api.xteam.xyz)
 
 #### Author / Creator : [`Nurutomo`](https://GitHub.com/Nurutomo)
+
+#### RECODER : [`ADIIXYZ`](https://github.com/Adiixyz/)
