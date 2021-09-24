@@ -8,9 +8,9 @@ let handler  = async (m, { conn, text }) => {
                      await sticker(false, pp, packname, author).then(gege => {
                      conn.sendMessage(m.chat, gege, 'stickerMessage', { quoted: m })
                      })
-  if (!text) throw 'Uhm...Teksnya?'
+  if (!text) throw 'Uhm...¿El texto?'
 }
-handler.help = ['attp <teks>']
+handler.help = ['attp <texto>']
 handler.tags = ['sticker']
 handler.command = /^attp$/i
 handler.owner = false
