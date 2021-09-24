@@ -26,7 +26,7 @@ let handler = async (m, { conn, text }) => {
     m.reply(`*${format}* = _${result}_`)
   } catch (e) {
     if (e == undefined) throw 'Isinya?'
-    throw 'Formati incirrecto, solo 0-9 y Simbolos -, +, *, /, ×, ÷, π, e, (, ) soportado'
+    throw 'Formato incorrecto, solo 0-9 y Simbolos -, +, *, /, ×, ÷, π, e, (, ) soportado'
   }
 }
 handler.help = ['calc <expression>']
