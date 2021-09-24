@@ -55,8 +55,8 @@ ${arr.slice(0, 3).join('')}
 ${arr.slice(3, 6).join('')}
 ${arr.slice(6).join('')}
 
-${isWin ? `@${(isSurrender ? room.game.currentTurn : room.game.winner).split('@')[0]} Menang!` : isTie ? 'Game berakhir' : `Menunggu @${room.game.currentTurn.split('@')[0]}`}
-Ketik *nyerah* untuk nyerah
+${isWin ? `@${(isSurrender ? room.game.currentTurn : room.game.winner).split('@')[0]} ¡Gana!` : isTie ? 'juego terminado' : `Esperando @${room.game.currentTurn.split('@')[0]}`}
+Escriba *renunciar* para rendirse
 `.trim()
         if ((room.game._currentTurn ^ isSurrender ? room.x : room.o) !== m.chat)
             room[room.game._currentTurn ^ isSurrender ? 'x' : 'o'] = m.chat
