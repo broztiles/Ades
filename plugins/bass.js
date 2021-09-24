@@ -4,7 +4,7 @@ const { MessageType } = require('@adiwajshing/baileys')
 const { exec } = require('child_process')
 
 let handler = async (m, { conn, text }) => {
-if (!text) throw 'Masukan angka!!, Contoh #bass 30\n\nMax angka 1-100'
+if (!text) throw 'Ingrese números!!, ejemplo #bass 30\n\nNúmero máximo 1-100'
     try {
         let q = m.quoted ? { message: { [m.quoted.mtype]: m.quoted }} : m  
         let mime = ((m.quoted ? m.quoted : m.msg).mimetype || '')
@@ -18,7 +18,7 @@ if (!text) throw 'Masukan angka!!, Contoh #bass 30\n\nMax angka 1-100'
 						conn.sendFile(m.chat, buff, ran, '.mp3', m)
 						fs.unlinkSync(ran)
             })
-        } else m.reply('Kirim audio atau tag audio!!')
+        } else m.reply('Envíe audio o etiqueta el audio!!')
     } catch (e) {
         console.log(e)
         m.reply('Error! !')
