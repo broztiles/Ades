@@ -7,7 +7,7 @@ let handler = async (m, { conn, text }) => {
 //  let [teks, teks2] = text.split('|')
   let q = m.quoted ? m.quoted : m
   let mime = (q.msg || q).mimetype || ''
-  if (!mime) throw 'Tidak ada foto'
+  if (!mime) throw 'Sin imagen'
   if (!/image\/(jpe?g|png)/.test(mime)) throw `Mime ${mime} tidak support`
   let img = await q.download()
   let url = await uploadImage(img)
@@ -17,7 +17,7 @@ let handler = async (m, { conn, text }) => {
     quoted: m
   })
  } catch (e) {
-   m.reply('Reply image, Kalau gabisa error paok!!')
+   m.reply('Imagen de respuesta, si no funciona, ¡es un error!')
   }
 }
 handler.help = ['effect_senyum']
