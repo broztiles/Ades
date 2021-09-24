@@ -12,11 +12,11 @@ let handler  = async (m, { conn }) => {
   totaluser = Object.keys(DATABASE.data.users)
   ppbuffer = await fetch(pplink).then(v => v.buffer())
   conn.sendMessage(m.chat, ppbuffer, 'imageMessage', { caption:`
- *Name Bot* : ${conn.user.name}
- *Total Groups* : ${conn.chats.array.filter(v => v.jid.endsWith('g.us')).map(v => v.jid).length}
+ *Nombre Bot* : ${conn.user.name}
+ *Total Grupos* : ${conn.chats.array.filter(v => v.jid.endsWith('g.us')).map(v => v.jid).length}
  *Total personal* : ${conn.chats.array.filter(v => v.jid.endsWith('s.whatsapp.net')).map(v => v.jid).length}
- *Total User* : ${totaluser.length}
- *Uptime* : ${clockString(process.uptime() * 1000)}
+ *Total Usuarios* : ${totaluser.length}
+ *Tiempo de actividad* : ${clockString(process.uptime() * 1000)}
  *Bio* : ${ppstatus.status}`, quoted: m, sendEphemeral: true})
 }
 handler.help = ['info', 'alive']
