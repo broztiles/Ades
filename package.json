@@ -1,5 +1,5 @@
 {
-  "name": "wabot-aq",
+  "name": "Ades",
   "version": "2.1.0",
   "description": "Customizable WhatsApp Bot",
   "depecrated": false,
@@ -21,7 +21,7 @@
   ],
   "homepage": "https://github.com/Caliph71/bot-aq",
   "author": {
-    "name": "Nurutomo"
+    "name": "Broztiles"
   },
   "repository": {
     "type": "git",
