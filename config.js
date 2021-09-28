@@ -12,8 +12,8 @@ global.APIKeys = { // APIKey Here
 }
 
 // Sticker WM
-global.packname = 'FBI BOT'
-global.author = 'IG : @caliph_71'
+global.packname = '🩸ADES🩸'
+global.author = 'IG : @Axel_bytu'
 
 global.multiplier = 69 // The higher, The harder levelup
 
